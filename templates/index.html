@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇×ゲーム (Tic-Tac-Toe)</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>〇×ゲーム</h1>
+        <div class="game-info">
+            <div id="turn-indicator">現在のターン: <span id="current-turn">○</span></div>
+            <div id="game-status"></div>
+        </div>
+        
+        <div class="game-board" id="game-board">
+            {{range $index, $value := .Board}}
+            <div class="cell" data-position="{{$index}}" onclick="makeMove({{$index}})">
+                {{$value}}
+            </div>
+            {{end}}
+        </div>
+        
+        <div class="controls">
+            <button id="reset-btn" onclick="resetGame()">ゲームリセット</button>
+        </div>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>
