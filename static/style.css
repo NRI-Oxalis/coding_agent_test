@@ -100,6 +100,32 @@ h1 {
     transform: none;
 }
 
+/* Dog and Cat Pictogram Styles */
+.cell.dog::before {
+    content: '🐶';
+    font-size: 3em;
+    display: block;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.cell.cat::before {
+    content: '🐱';
+    font-size: 3em;
+    display: block;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Turn indicator styles */
+.turn-dog {
+    color: #8B4513;
+    font-size: 2em;
+}
+
+.turn-cat {
+    color: #FF6B6B;
+    font-size: 2em;
+}
+
 .controls {
     margin-top: 20px;
 }

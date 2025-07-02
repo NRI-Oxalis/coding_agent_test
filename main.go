@@ -22,7 +22,7 @@ var game Game
 func initGame() {
 	game = Game{
 		Board:       [9]string{"", "", "", "", "", "", "", "", ""},
-		CurrentTurn: "○",
+		CurrentTurn: "dog",
 		Winner:      "",
 		GameOver:    false,
 	}
@@ -116,10 +116,10 @@ func handleMove(w http.ResponseWriter, r *http.Request) {
 		game.GameOver = true
 	} else {
 		// Switch turns
-		if game.CurrentTurn == "○" {
-			game.CurrentTurn = "×"
+		if game.CurrentTurn == "dog" {
+			game.CurrentTurn = "cat"
 		} else {
-			game.CurrentTurn = "○"
+			game.CurrentTurn = "dog"
 		}
 	}
 	

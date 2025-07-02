@@ -1,7 +1,7 @@
 // Game state
 let gameState = {
     board: ["", "", "", "", "", "", "", "", ""],
-    currentTurn: "○",
+    currentTurn: "dog",
     winner: "",
     gameOver: false
 };
@@ -55,19 +55,35 @@ function updateUI() {
     // Update board
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell, index) => {
-        cell.textContent = gameState.board[index];
+        const cellValue = gameState.board[index];
+        
+        // Clear existing classes
+        cell.className = 'cell';
+        cell.textContent = '';
+        
+        // Apply appropriate class and content based on cell value
+        if (cellValue === 'dog') {
+            cell.classList.add('dog');
+        } else if (cellValue === 'cat') {
+            cell.classList.add('cat');
+        }
         
         // Add/remove disabled class
-        if (gameState.gameOver || gameState.board[index] !== "") {
+        if (gameState.gameOver || cellValue !== "") {
             cell.classList.add('disabled');
-        } else {
-            cell.classList.remove('disabled');
         }
     });
     
     // Update turn indicator
     const currentTurnElement = document.getElementById('current-turn');
-    currentTurnElement.textContent = gameState.currentTurn;
+    currentTurnElement.className = ''; // Clear existing classes
+    if (gameState.currentTurn === 'dog') {
+        currentTurnElement.textContent = '🐶';
+        currentTurnElement.classList.add('turn-dog');
+    } else {
+        currentTurnElement.textContent = '🐱';
+        currentTurnElement.classList.add('turn-cat');
+    }
     
     // Update game status
     const gameStatusElement = document.getElementById('game-status');
@@ -79,7 +95,8 @@ function updateUI() {
             gameStatusElement.className = "draw";
             turnIndicatorElement.style.display = "none";
         } else {
-            gameStatusElement.textContent = `${gameState.winner} の勝利です！`;
+            const winnerText = gameState.winner === 'dog' ? '🐶' : '🐱';
+            gameStatusElement.textContent = `${winnerText} の勝利です！`;
             gameStatusElement.className = "winner";
             turnIndicatorElement.style.display = "none";
         }
